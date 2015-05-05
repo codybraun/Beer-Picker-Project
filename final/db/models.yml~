@@ -1,0 +1,67 @@
+# Example table for a typical Book model.
+#
+# Book
+#   title: string
+#   author_id: integer
+#   price: integer
+#   summary: text
+#   hardcover: boolean
+#
+# Indent consistently!  Follow the above syntax exactly.
+# Typical column choices are: string, text, integer, boolean, date, time, and datetime.
+#
+#
+# Specifying Default Values
+# ----------------------------------------------------
+# Default column values can be specified like this:
+#    price: integer(0)
+#
+# If not specified, Boolean columns always default to false.
+#
+#
+# Convention-Based Defaults:
+# ----------------------------------------------------
+# You can omit the column type if it's a string, or if it's obviously an integer column:
+#
+#
+# Book
+#   title
+#   author_id
+#   price: integer
+#   summary: text
+#   hardcover: boolean
+#
+# Complete details are in the README file online.
+#
+# Have fun!
+
+Beer
+  name: string
+  description: string
+  image_url: string
+  created: datetime
+  brewery: integer
+
+Brewery
+  name: string
+  created: datetime
+  description: string
+  
+User
+  username: string
+  password: string
+  bio: string
+  created: datetime
+
+Rating
+  stars: integer
+  blurb: string
+  written_by: integer
+  created: datetime
+
+Follow
+  follower_id: int
+  followed_id: int
+  created: datetime
+
+

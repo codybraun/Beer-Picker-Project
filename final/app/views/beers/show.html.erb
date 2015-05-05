@@ -1,0 +1,36 @@
+<h2><%= @beer.name %></h2>
+
+<p>
+  <%= link_to "Edit", edit_beer_path %>
+</p>
+
+<div>
+<%= image_tag @beer.image_url, size: '200x200' %>
+
+<p><%= @beer.description %></p>
+
+<h3 style="clear:both; margin-top: 100px">Reviews</h3>
+
+<p>Write a review</p>
+<%= form_tag "#{@beer.id}/reviews/" do %>
+  <select name="rating">
+    <option>5 star</option>
+    <option>4 star</option>
+    <option>3 star</option>
+    <option>2 star</option>
+    <option>1 star</option>
+  </select>
+  <input name="desc" size="50">
+  <button>Submit</button>
+<% end %>
+
+<% Rating.where(beer_id: @beer.id).order('id desc').each do |rating| %>
+  <p>
+    <strong><%= ("&#9733;" * rating.stars).html_safe  %></strong>
+    <%= review.desc %>
+
+  </p>
+<% end %>
+
+<p></p>
+
