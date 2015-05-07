@@ -1,3 +1,4 @@
+<div class="col-md-8 col-md-offset-2">
 <h2><%= @beer.name %></h2>
 
 <p>
@@ -5,12 +6,14 @@
 </p>
 
 <div>
-<%= image_tag @beer.image_url, size: '200x200' %>
+<div class="col-md-4">
+
+<%= image_tag @beer.image_url, width: '200px' %>
 
 <p><%= @beer.description %></p>
-
-<h3 style="clear:both; margin-top: 100px">Reviews</h3>
-
+</div>
+<div class="col-md-4 col-md-offset-1">
+<h3>Reviews</h3>
 <p>Write a review</p>
 <%= form_tag "#{@beer.id}/reviews/" do %>
   <select name="rating">
@@ -31,6 +34,5 @@
 
   </p>
 <% end %>
-
-<p></p>
-
+</div>
+</div>

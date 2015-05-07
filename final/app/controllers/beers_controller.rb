@@ -12,25 +12,23 @@ class BeersController < ApplicationController
   end
 
   def create
-    Place.create title: params[:title],
-                 price: (params[:price].to_f * 100).to_i,
-                 photo_url: params[:url],
-                 desc: params[:desc]
+    Beer.create name: params[:name],
+                 image_url: params[:image_url],
+                 description: params[:description]
     redirect_to root_path
   end
 
   def edit
-    @place = Place.find(params[:id])
+    @beer = Beer.find(params[:id])
   end
 
   def update
-    @place = Place.find(params[:id])
-    @place.update title: params[:title],
-                 price: (params[:price].to_f * 100).to_i,
-                 photo_url: params[:url],
-                 desc: params[:desc]
+    @beer = Beer.find(params[:id])
+    @beer.update name: params[:name],
+                 image_url: params[:image_url],
+                 description: params[:description]
 
-    redirect_to "/places/#{@place.id}"
+    redirect_to "/beers/#{@beer.id}"
   end
 
   def destroy
