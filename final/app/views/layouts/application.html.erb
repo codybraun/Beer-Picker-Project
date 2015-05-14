@@ -14,6 +14,10 @@
 	<div class="col-md-8 col-md-offset-2" style="padding-bottom:10px;">
     <h1><%= link_to "Beer Picker", "/beers" %></h1><br>
     <%= link_to "Add a New Beer", "/beers/new", :class => "btn btn-default" %>
+        <%= link_to "Add a New Brewery", new_brewery_path, :class => "btn btn-default" %>
+        <%= link_to "Browse Beers", beers_path, :class => "btn btn-default" %>
+        <%= link_to "Browse Breweries", breweries_path, :class => "btn btn-default" %>
+    
 
     <% if notice.present? %>
       <div class="alert alert-info"%>

@@ -10,7 +10,11 @@
     	<td>
       <%= link_to beer.name, "/beers/#{beer.id}" %>
       </td>
+      
       <td>
+    	<%= link_to beer.brewery.name, "/breweries/#{beer.brewery_id}" %>
+    	</td>
+    	<td>
       <%= link_to "Delete", "/beers/#{beer.id}", :method => 'delete' %>
       </td>
     </tr>

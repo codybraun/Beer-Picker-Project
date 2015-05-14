@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "description"
     t.string   "image_url"
     t.datetime "created"
+    t.integer  "brewery_id"
+  end
+
+  add_index "beers", ["brewery_id"], name: "index_beers_on_brewery_id"
+
+  create_table "breweries", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created"
+    t.string   "description"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -34,7 +43,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "blurb"
     t.integer  "written_by"
     t.datetime "created"
+    t.integer  "beer_id"
   end
+
+  add_index "ratings", ["beer_id"], name: "index_ratings_on_beer_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
