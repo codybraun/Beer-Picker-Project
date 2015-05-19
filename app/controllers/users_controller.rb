@@ -23,14 +23,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = cookies['current_user']
+    @user = User.find_by(id: cookies['current_user'])
   end
 
   def update
-    @user = Beer.find(user[:id])
+    @user = User.find(user[:id])
     @user.update name: params[:name],
                  image_url: params[:image_url],
-                 bio: params[:bio]
+                 bio: params[:bio],
+    password: params[:password]
 
     redirect_to "/beers/#{@beer.id}"
   end
