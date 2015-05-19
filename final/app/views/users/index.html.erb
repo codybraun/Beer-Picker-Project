@@ -1,0 +1,18 @@
+<div class="col-md-8 col-md-offset-2">
+
+
+<table class="table table-striped table-bordered">
+  <% @users.each do |user| %>
+    <tr>
+
+    	<td>
+      <%= link_to user.username, "/users/#{user.id}" %>
+      </td>
+      
+    	<td>
+      <%= link_to "Delete", "/users/#{user.id}", :method => 'delete' %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+</div>

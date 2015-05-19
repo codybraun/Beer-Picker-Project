@@ -1,0 +1,40 @@
+<% user = User.find_by(id: cookies['current_user']) %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Beer Picker</title>
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+
+  <div class="container-fluid">
+	<div class="col-md-8 col-md-offset-2" style="padding-bottom:10px;">
+    <h1><%= link_to "Beer Picker", "/beers" %></h1><br>
+    <%= link_to "Add a New Beer", "/beers/new", :class => "btn btn-default" %>
+        <%= link_to "Add a New Brewery", new_brewery_path, :class => "btn btn-default" %>
+        <%= link_to "Browse Beers", beers_path, :class => "btn btn-default" %>
+        <%= link_to "Browse Breweries", breweries_path, :class => "btn btn-default" %>
+        <%= link_to "Sign Up", new_user_path, :class => "btn btn-default" %>
+        <%if User.find_by(id: cookies['current_user']) %>
+        <%= link_to "Sign Out", "/sessions/", :method => 'delete', :class => "btn btn-default" %>
+        <% else %>
+    	<%= link_to "Sign In", new_session_path,  :class => "btn btn-default" %>
+    	<% end %>    
+    
+
+    <% if notice.present? %>
+      <div class="alert alert-info"%>
+        <%= notice %>
+      </div><br>
+      </div>
+    <% end %>
+	</div><br><br>
+    <%= yield %>
+  </div>
+
+</body>
+</html>
