@@ -22,8 +22,9 @@ Rails.application.routes.draw do
      resources :ratings
    end
   
-
    resources :users
    resources :breweries
+   resources :sessions, only: [:new, :create]
+   delete '/sessions/', to: 'sessions#destroy'  
 
 end

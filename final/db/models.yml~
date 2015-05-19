@@ -3,7 +3,7 @@ Beer
   description: string
   image_url: string
   created: datetime
-
+  brewery_id: integer
 
 Brewery
   name: string
@@ -12,14 +12,14 @@ Brewery
   
 User
   username: string
+  email: string
   password: string
   bio: string
   created: datetime
 
 Rating
   stars: integer
-  blurb: string
-  written_by: integer
+  description: string
   created: datetime
   beer_id: integer
 

@@ -12,14 +12,15 @@ Brewery
   
 User
   username: string
+  email: string
   password: string
   bio: string
   created: datetime
+  image_url: string
 
 Rating
   stars: integer
-  blurb: string
-  written_by: integer
+  description: string
   created: datetime
   beer_id: integer
 

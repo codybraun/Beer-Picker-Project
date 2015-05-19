@@ -1,6 +1,5 @@
 <div class="col-md-8 col-md-offset-2">
 
-
 <table class="table table-striped table-bordered">
   <% @beers.each do |beer| %>
     <tr>
@@ -12,7 +11,7 @@
       </td>
       
       <td>
-    	<%= link_to beer.brewery.name, "/breweries/#{beer.brewery_id}" %>
+    	<%= link_to Brewery.find_by(id: beer.brewery_id).name, "/breweries/#{beer.brewery_id}" %>
     	</td>
     	<td>
       <%= link_to "Delete", "/beers/#{beer.id}", :method => 'delete' %>
