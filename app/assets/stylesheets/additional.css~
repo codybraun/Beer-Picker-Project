@@ -1,0 +1,11 @@
+body {
+    background-image: url("beer.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.table-striped>tbody>tr:nth-child(even)>td, 
+.table-striped>tbody>tr:nth-child(even)>th {
+   background-color: #f00;
+ }

@@ -5,5 +5,7 @@
   <p><label>Photo URL:</label> <input value="<%= @user.image_url %>" name="image_url" size="80"></p>
   <p><label>User Bio:</label></p>
   <textarea name="bio" cols="80" rows="3"><%= @user.bio %></textarea>
+    <p><label>Password:</label></p>
+  <textarea name="password"><%= @user.password %></textarea>
   <p><button>Submit</button></p>
 </div>

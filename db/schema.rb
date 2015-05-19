@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "ratings", force: :cascade do |t|
     t.integer  "stars"
     t.datetime "created"
-    t.integer  "beer_id"
     t.string   "description"
+    t.integer  "beer_id"
   end
 
   add_index "ratings", ["beer_id"], name: "index_ratings_on_beer_id"

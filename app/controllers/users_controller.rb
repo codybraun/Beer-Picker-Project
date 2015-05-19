@@ -27,13 +27,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(user[:id])
-    @user.update name: params[:name],
+    @user = User.find(params[:id])
+    @user.update username: params[:username],
                  image_url: params[:image_url],
                  bio: params[:bio],
     password: params[:password]
-
-    redirect_to "/beers/#{@beer.id}"
+    redirect_to "/users/#{@user.id}/edit"
   end
 
   def destroy
