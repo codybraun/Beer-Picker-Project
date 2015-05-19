@@ -2,11 +2,20 @@
 
 <h2>Add a New Beer</h2>
 <%= form_tag "/beers" do %>
-  <p><label>Name:</label> <input name="name" size="30"></p>
-  <p><label>Photo URL:</label> <input name="image_url" size="80"></p>
-  <p><label>Brewery:</label> <input name="brewery"></p>
-  <p><label>Description:</label></p>
-  <textarea name="desc" cols="80" rows="3"></textarea>
+ <%= label_tag :name %> <%= text_field_tag :name %><br>
+    <%= label_tag :image_url %> <%= text_field_tag :image_url %><br>
+  <%= label_tag :brewery %>
+  
+  <select name="brewery">
+      <% @breweries.each do |brewery| %>
+        <option value="<%= brewery.id %>">
+          <%= brewery.name %>
+        </option>
+      <% end %>
+    </select><br>
+  
+  
+ <%= label_tag :description %> <%= text_field_tag :description %><br>
   <p><button>Submit</button></p>
 <% end %>
 </div>

@@ -10,13 +10,18 @@ class BeersController < ApplicationController
   end
 
   def new
+    @breweries = Brewery.all
   end
 
   def create
-    Beer.create name: params[:name],
-                 image_url: params[:image_url],
-                 description: params[:description]
-    redirect_to root_path
+    @brewery = Brewery.find_by(id: params[:brewery])
+    @beer = Beer.new(name: params[:name], image_url: params[:image_url], description: params[:description], brewery: @brewery) 
+    if @beer.valid?
+      redirect_to root_url, notice:"Created beer " + params[:name]
+      @beer.save
+    else
+      redirect_to new_beer_path, notice:"Did not create a beer: " + @beer.errors.full_messages.flatten.join(" ")
+    end
   end
 
   def edit

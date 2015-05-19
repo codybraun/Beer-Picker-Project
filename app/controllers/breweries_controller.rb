@@ -9,13 +9,18 @@ class  BreweriesController < ApplicationController
   end
 
   def new
+    @brewery = Brewery.new
   end
 
   def create
-    Beer.create name: params[:name],
-                 image_url: params[:image_url],
-                 description: params[:description]
-    redirect_to root_path
+    @brewery = Brewery.new(name: params[:name], created: params[:created], description: params[:description]) 
+    if @brewery.valid?
+      redirect_to "/breweries/", notice:"Added brewery " + params[:name]
+      @brewery.save
+    else
+      redirect_to new_brewery_path, notice:"Did not create a brewery: " + @brewery.errors.full_messages.flatten.join(" ")
+    end
+    
   end
 
   def edit
@@ -29,8 +34,8 @@ class  BreweriesController < ApplicationController
   end
 
   def destroy
-    Beer.delete(params[:id])
-    redirect_to root_path
+    Brewery.delete(params[:id])
+    redirect_to "/breweries/"
   end
 
 
