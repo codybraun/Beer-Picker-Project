@@ -2,6 +2,7 @@ class BeersController < ApplicationController
 
   def index
     @beers = Beer.all
+    @recent = Beer.where(id: cookies["viewed"]).name
   end
 
   def show

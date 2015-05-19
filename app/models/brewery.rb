@@ -1,3 +1,5 @@
 class Brewery < ActiveRecord::Base
-  has_many :ratings
+  has_many :beers
+  
+  validates_presence_of :name
 end
