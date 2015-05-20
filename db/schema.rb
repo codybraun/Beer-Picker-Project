@@ -43,9 +43,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created"
     t.string   "description"
     t.integer  "beer_id"
+    t.integer  "user_id"
   end
 
   add_index "ratings", ["beer_id"], name: "index_ratings_on_beer_id"
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

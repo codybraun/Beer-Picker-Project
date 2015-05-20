@@ -27,14 +27,17 @@
   </select>
   <button class="btn btn-default">Submit</button>
 <% end %>
-
-<% Rating.where(beer_id: @beer.id).order('id desc').each do |rating| %>
-  <p>
+<table class="table table-striped table-bordered">
+<% Rating.where(beer_id: @beer.id).order('created desc').each do |rating| %>
+    <tr>
+    	<td>
     <strong><%= ("&#9733;" * rating.stars).html_safe  %></strong>
+    <% user = User.find_by(id: rating.user) %><br>
+    Posted by: <%= link_to user.username, "/users/#{user.id}" %>
     <br>
     <%= rating.description %>
+    </tr></td>
 
-  </p>
 <% end %>
 </div>
 </div>

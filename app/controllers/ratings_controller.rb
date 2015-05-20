@@ -13,7 +13,7 @@ class  RatingsController < ApplicationController
   end
 
   def create
-    Rating.create description: params[:description], beer_id: params[:beer_id], stars: params[:stars]
+    Rating.create description: params[:description], beer_id: params[:beer_id], stars: params[:stars], user: User.find_by(id: cookies['current_user'])
     redirect_to "/beers/#{params[:beer_id]}"
   end
 
