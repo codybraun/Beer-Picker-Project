@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
 
+  before_action :authorize, only: [:edit]
+    
+  def authorize
+      @user = User.find_by(id: params[:id])
+      if @user.blank? || session[:user_id] != @user.id
+        redirect_to root_url, notice: "You can't edit another user's account"
+      end
+    end
+  
   def index
     @users = User.all
   end
@@ -13,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(username: params[:username], image_url: params[:image_url], bio: params[:bio], password: params[:password], email: params[:email]) 
+    @user = User.new(username: params[:username], image_url: params[:image_url], bio: params[:bio], password: params[:password], email: params[:email], created: DateTime.now) 
     if @user.valid?
       redirect_to root_url, notice:"Welcome to Beer Picker " + params[:username]
         @user.save
@@ -23,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: cookies['current_user'])
+    @user = User.find_by(id: session[:user_id])
   end
 
   def update
@@ -35,8 +44,8 @@ class UsersController < ApplicationController
     redirect_to "/users/#{@user.id}/edit"
   end
 
-  def destroy
-    Beer.delete(params[:id])
+  def destroy #not implemented yet
+    User.delete(params[:id])
     redirect_to root_path
   end
 

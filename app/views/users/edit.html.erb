@@ -1,11 +1,9 @@
-<div class="col-md-8 col-md-offset-2">
 <h2>Edit Your Account Settings</h2>
 <%= form_tag "/users/#{@user.id}", :method => "patch", :class => "form-horizontal"%>
-  <p><label>Name:</label> <input value="<%= @user.username %>" name="username" size="30"></p>
-  <p><label>Photo URL:</label> <input value="<%= @user.image_url %>" name="image_url" size="80"></p>
-  <p><label>User Bio:</label></p>
+  <p><label>Name:</label> <br><input value="<%= @user.username %>" name="username" size="30"></p>
+  <p><label>Photo URL:</label><br> <input value="<%= @user.image_url %>" name="image_url" size="80"></p>
+  <p><label>User Bio:</label><br></p>
   <textarea name="bio" cols="80" rows="3"><%= @user.bio %></textarea>
-    <p><label>Password:</label></p>
-  <textarea name="password"><%= @user.password %></textarea>
-  <p><button>Submit</button></p>
-</div>
+    <p><label>Password:</label><br></p>
+  <%= password_field_tag name="password" %><%= @user.password %></textarea>
+  <br><br><p><button>Submit</button></p>

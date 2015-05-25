@@ -1,0 +1,19 @@
+
+<h2>Add a New Beer</h2>
+<%= form_tag "/beers" do %>
+ <%= label_tag :name %> <%= text_field_tag :name %><br>
+    <%= label_tag :image_url %> <%= text_field_tag :image_url %><br>
+  <%= label_tag :brewery %>
+  
+  <select name="brewery">
+      <% @breweries.each do |brewery| %>
+        <option value="<%= brewery.id %>">
+          <%= brewery.name %>
+        </option>
+      <% end %>
+    </select><br>
+  
+  
+ <%= label_tag :description %> <%= text_field_tag :description %><br>
+  <p><button>Submit</button></p>
+<% end %>

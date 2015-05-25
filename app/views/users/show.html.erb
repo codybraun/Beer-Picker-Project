@@ -1,19 +1,18 @@
-<div class="col-md-8 col-md-offset-2">
 <h2><%= @user.username %></h2>
 
 <p>
   <%= link_to "Edit", edit_user_path %>
 </p>
 
-<div>
+
 <div class="col-md-4">
 <%=image_tag(@user.image_url, :class => "img-rounded")%>
 <p><%= @user.bio %></p>
 </div>
-<div class="col-md-4 col-md-offset-1">
 
-
-
-
-</div>
+<div class="col-md-4">
+<% Badge.where(user_id: @user.id).order('created desc').each do |badge| %>
+	<h3><%= badge.name %></h3>
+      	<%= image_tag(badge.image_url, :class => "img-rounded") %>
+<% end %>
 </div>

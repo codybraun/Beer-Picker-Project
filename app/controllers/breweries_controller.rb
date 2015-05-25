@@ -1,5 +1,18 @@
 class  BreweriesController < ApplicationController
 
+   before_action :find_brewery, :only => [:show, :edit, :update]
+   before_action :require_user, :only => [:new, :create, :edit, :update, :destroy]
+   
+   def require_user
+     if session[:user_id].blank?
+       redirect_to root_url, notice: "You need to login to do that."
+     end
+   end
+     
+   def find_brewery
+     @brewery= Brewery.find_by(id: params["id"])
+   end
+  
   def index
     @breweries = Brewery.all
   end
@@ -13,14 +26,13 @@ class  BreweriesController < ApplicationController
   end
 
   def create
-    @brewery = Brewery.new(name: params[:name], created: params[:created], description: params[:description]) 
+    @brewery = Brewery.new(name: params[:name], created: params[:created], description: params[:description], created: DateTime.now) 
     if @brewery.valid?
       redirect_to "/breweries/", notice:"Added brewery " + params[:name]
       @brewery.save
     else
       redirect_to new_brewery_path, notice:"Did not create a brewery: " + @brewery.errors.full_messages.flatten.join(" ")
     end
-    
   end
 
   def edit

@@ -14,19 +14,19 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     if user
-      if (params[:password]==user.password)
-         cookies['current_user'] = user.id    
+      if user.authenticate(params[:password])
+        session["user_id"] = user.id
         redirect_to "/beers/", notice: "Welcome back " + User.find_by(email: params[:email]).username
       else      
-         redirect_to root_url, notice: "Unknown password."
+         redirect_to root_url, notice: "Uknown email or password"
       end
     else
-      redirect_to root_url, notice: "No account associated with address " + params[:email]
+      redirect_to root_url, notice: "Uknown email or password"
     end
   end
 
   def destroy
-    cookies['current_user'] = ""
+    session["user_id"] = nil
     redirect_to root_path, notice: "Signed out successfully"
   end
 

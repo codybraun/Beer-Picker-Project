@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "badges", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created"
+    t.string   "image_url"
+  end
+
+  add_index "badges", ["user_id"], name: "index_badges_on_user_id"
+
   create_table "beers", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -28,15 +37,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created"
     t.string   "description"
   end
-
-  create_table "follows", force: :cascade do |t|
-    t.integer  "follower_id"
-    t.integer  "followed_id"
-    t.datetime "created"
-  end
-
-  add_index "follows", ["followed_id"], name: "index_follows_on_followed_id"
-  add_index "follows", ["follower_id"], name: "index_follows_on_follower_id"
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "stars"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created"
     t.string   "email"
     t.string   "image_url"
+    t.string   "password_digest"
   end
 
 end

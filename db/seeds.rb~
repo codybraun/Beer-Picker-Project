@@ -1,7 +1,9 @@
 Beer.destroy_all
 Brewery.destroy_all
 User.destroy_all
+Rating.destroy_all
 
+#this is generated programmatically to grab some content off Beer Advocate just for now, I know it's not that pretty but it works
 b = Brewery.find_by(name:" - Dangerous Man Brewing") 
 if (!b)
 b = Brewery.create({ :name => " - Dangerous Man Brewing", :description => "brewery" }) 
@@ -342,3 +344,28 @@ if (!b)
 b = Brewery.create({ :name => " - Greenbush Brewing Company", :description => "brewery" }) 
 end
 Beer.create({ :name => "Doomslayer - Greenbush Brewing Company", :description => "beer", :brewery=> b  , :image_url => "http://cdn.beeradvocate.com/im/beers/93142.jpg"})
+
+User.create({username:"cody", password:"password", bio:"I made this whole site", email:"cody@example.com"})
+User.create({username:"ipa_guy", password:"password", bio:"I surel like IPAs", email:"IPAguy@example.com"})
+
+Rating.create({description: "Was a deep golden orange to brown body with a thin film of a head on top.
+Smelled nice and strong of hops (brewed with Citra, Centennial and Chinook). Dank and piney.
+Tasted great! Bitter, pine, peaches with a nice spicy bite, nice amount of malts on the end to even it out.
+Overall a tasty winner from a local brewing establishment producing some tasty beers for many years!", user: User.find_by(username: "cody"), stars:3, beer:Beer.find_by(name: "Imperial Coconut Milk Stout (Rum Barrel Aged) - Dangerous Man Brewing")})
+
+Rating.create({description: "hanks to Jim for this one!
+Pours into a fluted tulip glass with a finger or so of foam, drippy lacing and a light golden orange color. Perfect bright clarity, no haze at all.
+
+Aroma is pungent, mainly funky resinous green hops and grapefruit zest. A buttery biscuit note from the pale malt also.
+
+Taste is hoppy and resinous, moderately bitter and hoppy with a lingering dandelion green bitterness in the aftertaste. Light bodied and easy to sip. Delivers on the hoppiness, for sure. The large blend of hops renders the hop character indistinct, in favor of a resiny bitter punch. Overall I enjoyed this pretty well.
+", user: User.find_by(username: "cody"), stars: 5, beer:Beer.find_by(name: "Auspicious Day - Finback Brewery")})
+
+
+Rating.create({description: "great!", user: User.find_by(username: "ipa_guy"), stars: 5, beer:Beer.find_by(name: "Hop Henge Experimental IPA - Deschutes Brewery")})
+
+Rating.create({description: "great!", user: User.find_by(username: "ipa_guy"), stars: 5, beer:Beer.find_by(name: "Blind Pig IPA - Russian River Brewing Company")})
+
+
+
+

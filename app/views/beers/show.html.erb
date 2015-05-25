@@ -1,23 +1,21 @@
-<%cookies["viewed"] = @beer.id%>
-<div class="col-md-8 col-md-offset-2">
 <h2><%= @beer.name %></h2>
-
 <p>
   <%= link_to "Edit", edit_beer_path %>
 </p>
 
 <div>
-<div class="col-md-4">
+<div class="col-md-3">
 
 <%= image_tag @beer.image_url, :class => "img-rounded", width: '200px' %>
 
 <p><%= @beer.description %></p>
 </div>
-<div class="col-md-4 col-md-offset-1">
+<div class="col-md-7 col-md-offset-1">
 <h3>Reviews</h3>
-<p>Write a review</p>
+
 <%= form_tag "#{@beer.id}/ratings/", class: "form-inline" do %>
-  <input name="description" class="col-md-12">
+<%= label_tag "Write a review" %>
+<%= text_area_tag("description", nil, rows: 5, cols: 50 )%>
   <select name="stars" class="form-control">
     <option>5 star</option>
     <option>4 star</option>
@@ -27,6 +25,7 @@
   </select>
   <button class="btn btn-default">Submit</button>
 <% end %>
+<br><br>
 <table class="table table-striped table-bordered">
 <% Rating.where(beer_id: @beer.id).order('created desc').each do |rating| %>
     <tr>
@@ -39,5 +38,4 @@
     </tr></td>
 
 <% end %>
-</div>
 </div>

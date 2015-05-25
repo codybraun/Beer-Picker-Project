@@ -1,4 +1,3 @@
-<div class="col-md-8 col-md-offset-2">
 <h2>Edit a Beer</h2>
 <%= form_tag "/beers/#{@beer.id}", :method => "patch", :class => "form-horizontal"%>
   <p><label>Name:</label> <input value="<%= @beer.name %>" name="name" size="30"></p>
@@ -6,4 +5,3 @@
   <p><label>Description:</label></p>
   <textarea name="description" cols="80" rows="3"><%= @beer.description %></textarea>
   <p><button>Submit</button></p>
-</div>

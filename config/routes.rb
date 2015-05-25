@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'beers#index'
+  root 'ratings#index'
 #  get '/beers/:beer_id/ratings(.:format)'=> 'ratings#index', as: 'ratings'
 #  post '/beers/:beer_id/ratings(.:format)'=>'ratings#create' 
 #  get '/beers/:beer_id/ratings/new(.:format)'=>'ratings#new', as: 'new_rating'
@@ -22,7 +22,9 @@ Rails.application.routes.draw do
      resources :ratings
    end
   
-   resources :users
+   resources :users do
+     resources :badges
+   end
    resources :breweries
    resources :sessions, only: [:new, :create]
    delete '/sessions/', to: 'sessions#destroy'  

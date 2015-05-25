@@ -1,0 +1,21 @@
+<table class="table table-striped table-bordered">
+  <% @ratings.each do |rating| %>
+    <tr>
+    	<td>
+    	<%= link_to( truncate(rating.description, length: 30), "beers/#{rating.beer_id}/ratings/#{rating.id}")%>
+    	</td>
+    	<td>
+    	    <strong><%= ("&#9733;" * rating.stars).html_safe  %></strong>
+
+      </td>
+      
+      <td>
+      <%= link_to rating.beer.name, "/beers/#{rating.beer.id}" %>
+    	</td>
+    	<td>
+      <%= link_to rating.user.username, "/users/#{rating.user.id}" %>
+    	</td>
+    </tr>
+  <% end %>
+</table>
+

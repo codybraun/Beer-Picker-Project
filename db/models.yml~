@@ -17,6 +17,7 @@ User
   bio: string
   created: datetime
   image_url: string
+  password_digest: string
 
 Rating
   stars: integer
@@ -25,9 +26,10 @@ Rating
   beer_id: integer
   user_id: integer
 
-Follow
-  follower_id: int
-  followed_id: int
+Badge
+  user_id: int
+  name: string
+  image_url: string
   created: datetime
 
 
