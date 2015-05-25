@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "description"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "followed_id"
+    t.integer "follower_id"
+  end
+
+  add_index "follows", ["followed_id"], name: "index_follows_on_followed_id"
+  add_index "follows", ["follower_id"], name: "index_follows_on_follower_id"
+
   create_table "ratings", force: :cascade do |t|
     t.integer  "stars"
     t.datetime "created"

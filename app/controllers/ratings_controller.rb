@@ -19,7 +19,7 @@ class  RatingsController < ApplicationController
   
   
   def index
-   @ratings = Rating.all.order('created desc')
+  @ratings = Rating.joins("LEFT OUTER JOIN follows ON ratings.user_id = follows.followed_id").where(follows: {follower_id: session[:user_id]})
   end
 
   def show

@@ -24,9 +24,11 @@ Rails.application.routes.draw do
   
    resources :users do
      resources :badges
+     resources :follows
    end
    resources :breweries
    resources :sessions, only: [:new, :create]
+   
    delete '/sessions/', to: 'sessions#destroy'  
 
 end

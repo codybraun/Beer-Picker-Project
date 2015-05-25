@@ -32,4 +32,8 @@ Badge
   image_url: string
   created: datetime
 
+Follow
+  followed_id: int
+  follower_id: int
+
 

@@ -1,9 +1,9 @@
 <h2><%= @user.username %></h2>
-
-<p>
-  <%= link_to "Edit", edit_user_path %>
-</p>
-
+<% if Follow.find_by(follower_id: session[:user_id], followed_id: @user.id) %>
+<%= link_to "Unfollow" , "#{@user.id}/follows/#{session[:user_id]}", method: 'delete' %>
+<% else %>
+<%= link_to "Follow",new_user_follow_path(user_id: @user.id) %>
+<% end %>
 
 <div class="col-md-4">
 <%=image_tag(@user.image_url, :class => "img-rounded")%>
@@ -16,3 +16,5 @@
       	<%= image_tag(badge.image_url, :class => "img-rounded") %>
 <% end %>
 </div>
+
+

@@ -1,4 +1,3 @@
 class Follow < ActiveRecord::Base
-  validates :follower_id, :presence => true
-  validates :followee_id, :presence => true
+  belongs_to :user
 end
