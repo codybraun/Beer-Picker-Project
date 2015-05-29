@@ -10,12 +10,12 @@ class BeersController < ApplicationController
   end
     
   def find_beer
-    @beer= Beer.find_by(id: params["id"])
+    @beer = Beer.find_by(id: params["id"])
   end
     
   def index
     @beers = Beer.limit(200).page(params[:page]).per(20)
-    @recent = Beer.where(id: cookies["viewed"]).name
+    #@recent = Beer.where(id: cookies["viewed"]).name
   end
 
   def show
@@ -40,16 +40,13 @@ class BeersController < ApplicationController
   end
 
   def update
-    @beer.update name: params[:name],
-                 image_url: params[:image_url],
-                 description: params[:description]
-
+    @beer.update name: params[:name], image_url: params[:image_url], description: params[:description]
     redirect_to "/beers/#{@beer.id}"
   end
 
   def destroy
-    Beer.delete(params[:id])
-    redirect_to root_path
+    Beer.destroy(params[:id])
+    redirect_to "/beers", notice: "Deleted!"
   end
 
 

@@ -1,10 +1,17 @@
 class  RatingsController < ApplicationController
-
   before_action :find_rating, :only => [:show]
   before_action :require_user, :only => [:new, :create, :edit, :update, :destroy]
     
   def check_badge
-   
+    #check if need to give out a badge. I should add more badges, but these work for now
+    if (Rating.where(user_id: session[:user_id]).count) == 1
+        Badge.create(user_id: session[:user_id], name: "FIRST REVIEW BADGE", image_url: "http://www.cody-braun.com/bp_images/gold-medal.jpg", created: DateTime.now)
+    end
+    
+    if (Rating.where({user_id: session[:user_id], created:(Time.now.midnight-1.day)..Time.now.midnight + 1.day}).count) == 3
+        Badge.create(user_id: session[:user_id], name: "THREE REVIEWS IN ONE DAY", image_url: "http://www.cody-braun.com/bp_images/gold-medal.jpg", created: DateTime.now)
+    end
+    
   end  
     
   def require_user
@@ -19,6 +26,9 @@ class  RatingsController < ApplicationController
   
   
   def index
+    if session['user_id'].blank?
+      redirect_to "/beers"
+    end
     @ratings = Rating.joins("LEFT OUTER JOIN follows ON ratings.user_id = follows.followed_id").where(follows: {follower_id: session[:user_id]}).limit(200).page(params[:page]).per(20)
   end
 
@@ -32,17 +42,11 @@ class  RatingsController < ApplicationController
 
   def create
     Rating.create description: params[:description], beer_id: params[:beer_id], stars: params[:stars], user: User.find_by(id: session[:user_id]), created: DateTime.now
-    if (Rating.where(user_id: session[:user_id]).count) == 1
-         Badge.create(user_id: session[:user_id], name: "FIRST REVIEW BADGE", image_url: "gold-medal.jpg", created: DateTime.now)
-    end
-    if (Rating.where({user_id: session[:user_id], created:(Time.now.midnight-1.day)..Time.now.midnight + 1.day}).count) == 3
-             Badge.create(user_id: session[:user_id], name: "THREE REVIEWS IN ONE DAY", image_url: "gold-medal.jpg", created: DateTime.now)
-    end
+    check_badge
 #    @brewery = Beer.find(params[:beer_id]).brewery
 #    if (Beer.joins("LEFT JOIN beers ON beers.id = ratings.beer_id").where("beer.brewery": @brewery).joins(Rating.where({user_id: session[:user_id]}))count == 3
 #               Badge.create(user_id: session[:user_id], name: "THREE REVIEWS OF ONE BREWERY", image_url: "gold-medal.jpg", created: DateTime.now)
-#      end
-    
+#    end
     redirect_to "/beers/#{params[:beer_id]}", notice: "Added a review"
   end
 

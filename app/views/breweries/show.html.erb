@@ -14,7 +14,7 @@
 
 
 <% Beer.where(brewery_id: @brewery.id).order('id desc').each do |beer| %>
-	<h3><%= beer.name %></h3>
+	<h3><%= link_to beer.name, "/beers/#{beer.id}" %> </h3>
       	<%= link_to image_tag(beer.image_url, :class => "img-rounded"), "/beers/#{beer.id}" %>
   <p>
     <%= beer.description %>

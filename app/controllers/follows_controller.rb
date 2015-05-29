@@ -1,10 +1,9 @@
 class FollowsController < ApplicationController
-
   before_action :find_follow, :only => [:show]
   before_action :require_user, :only => [:new, :create, :edit, :update, :destroy]
     
   def check_badge
-   
+   #could add some badges for makin' friends
   end  
     
   def require_user
@@ -30,7 +29,6 @@ class FollowsController < ApplicationController
   end
 
   def create
-
   end
 
   def destroy 

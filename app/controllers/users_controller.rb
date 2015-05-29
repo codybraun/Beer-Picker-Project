@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
-
   before_action :authorize, only: [:edit]
-    
   def authorize
-      @user = User.find_by(id: params[:id])
-      if @user.blank? || session[:user_id] != @user.id
-        redirect_to root_url, notice: "You can't edit another user's account"
-      end
+    #make sure the right user is editing an account details
+    @user = User.find_by(id: params[:id])
+    if @user.blank? || session[:user_id] != @user.id
+      redirect_to root_url, notice: "You can't edit another user's account"
     end
+  end
   
   def index
     #not actually used anywhere, don't need to limit or anything probably
@@ -38,10 +37,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update username: params[:username],
-                 image_url: params[:image_url],
-                 bio: params[:bio],
-    password: params[:password]
+    @user.update username: params[:username], image_url: params[:image_url], bio: params[:bio], password: params[:password]
     redirect_to "/users/#{@user.id}/edit"
   end
 
