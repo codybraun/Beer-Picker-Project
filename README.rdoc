@@ -1,4 +1,6 @@
 So I meant to implement a simple recomendation algorithm, maybe just cosine distance between users or something. but never got around to it. For now this is fairly bare bones, but I have it deployed to a public URL with heroku: https://pure-inlet-8986.herokuapp.com/
 
+I'm also using Bootstrap.
+
 Thanks,
 Cody
