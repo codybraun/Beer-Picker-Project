@@ -1,3 +1,4 @@
+<%= paginate @ratings %>
 <table class="table table-striped table-bordered">
 <%if (Follow.where(follower_id: session[:user_id]).count == 0) %>
 <p>You don't follow any users. Browse beers to find people with similar taste</p>

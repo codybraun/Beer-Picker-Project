@@ -2,6 +2,7 @@ Beer.destroy_all
 Brewery.destroy_all
 User.destroy_all
 Rating.destroy_all
+Badge.destroy_all
 
 #this is generated programmatically to grab some content off Beer Advocate just for now, I know it's not that pretty but it works
 b = Brewery.find_by(name:" - Dangerous Man Brewing") 
@@ -366,6 +367,11 @@ Rating.create({description: "great!", user: User.find_by(username: "ipa_guy"), s
 
 Rating.create({description: "great!", user: User.find_by(username: "ipa_guy"), stars: 5, beer:Beer.find_by(name: "Blind Pig IPA - Russian River Brewing Company")})
 
+User.create({username:"stout_fan", password:"stouts", bio:"I surel like stouts", email:"stouts@example.com"})
+
+Rating.create({description: "great! I basically cannot get enough stouts", user: User.find_by(username: "stout_fan"), stars: 5, beer:Beer.find_by(name: "Imperial Coconut Milk Stout (Rum Barrel Aged) - Dangerous Man Brewing")})
+
+Rating.create({description: "great! stouts have done it again", user: User.find_by(username: "stout_fan"), stars: 5, beer:Beer.find_by(name: "Terrapin Coffee Oatmeal Imperial Stout - Terrapin Beer Company")})
 
 
 

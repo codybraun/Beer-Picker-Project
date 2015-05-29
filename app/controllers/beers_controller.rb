@@ -14,7 +14,7 @@ class BeersController < ApplicationController
   end
     
   def index
-    @beers = Beer.all
+    @beers = Beer.limit(200).page(params[:page]).per(20)
     @recent = Beer.where(id: cookies["viewed"]).name
   end
 

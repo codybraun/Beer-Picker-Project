@@ -14,7 +14,7 @@ class  BreweriesController < ApplicationController
    end
   
   def index
-    @breweries = Brewery.all
+    @breweries = Brewery.limit(200).page(params[:page]).per(20)
   end
 
   def show

@@ -19,7 +19,7 @@ class  RatingsController < ApplicationController
   
   
   def index
-  @ratings = Rating.joins("LEFT OUTER JOIN follows ON ratings.user_id = follows.followed_id").where(follows: {follower_id: session[:user_id]})
+    @ratings = Rating.joins("LEFT OUTER JOIN follows ON ratings.user_id = follows.followed_id").where(follows: {follower_id: session[:user_id]}).limit(200).page(params[:page]).per(20)
   end
 
   def show
@@ -27,7 +27,7 @@ class  RatingsController < ApplicationController
   end
 
   def new
-    
+    #not used
   end
 
   def create

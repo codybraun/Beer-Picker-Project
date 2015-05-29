@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     end
   
   def index
+    #not actually used anywhere, don't need to limit or anything probably
     @users = User.all
   end
 
